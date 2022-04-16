@@ -13,6 +13,8 @@ import Grid from "./components/Grid";
 import Page from "./components/Page";
 import Teaser from "./components/Teaser";
 
+import styles from "./styles/app.css"
+
 const components = {
   feature: Feature,
   grid: Grid,
@@ -49,3 +51,6 @@ export default function App() {
   );
 }
 
+export function links() {
+  return [{ rel: "stylesheet", href: styles }]
+}

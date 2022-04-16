@@ -1,5 +1,6 @@
+import Layout from "../components/Layout";
 import { json } from "@remix-run/node";
-import { useLoaderData, useParams } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 
 import {
   getStoryblokApi,
@@ -7,7 +8,24 @@ import {
   StoryblokComponent,
 } from "@storyblok/react";
 
-export const loader = async ({ locale, locales, params, preview = false }) => {
+export default function Page({ locale }) {
+  let story = useLoaderData();
+  locale = story.lang;
+  story = useStoryblokState(story, {
+    resolveRelations: ["featured-posts.posts", "selected-posts.posts"],
+    language: locale,
+  });
+  console.log('Page locale: ' + locale)
+
+  return (
+    <Layout locale={locale}>
+      {console.log(locale)}
+      <StoryblokComponent blok={story.content} />
+    </Layout>
+  )
+};
+
+export const loader = async ({ locale, params, preview = false }) => {
   let slug = params["*"] ?? "home";
 
   let sbParams = {
@@ -15,6 +33,7 @@ export const loader = async ({ locale, locales, params, preview = false }) => {
     resolve_relations: ["featured-posts.posts", "selected-posts.posts"],
     language: locale,
   };
+  console.log('loader locale: ' + locale)
 
   if (preview) {
     sbParams.version = "draft"
@@ -24,13 +43,3 @@ export const loader = async ({ locale, locales, params, preview = false }) => {
   let { data } = await getStoryblokApi().get(`cdn/stories/${slug}`, sbParams);
   return json(data?.story, preview);
 };
-
-export default function Page() {
-  const params = useParams();
-  console.log('From Page: ' + params["*"]);
-
-  let story = useLoaderData();
-  story = useStoryblokState(story);
-
-  return <StoryblokComponent blok={story.content} />;
-}
