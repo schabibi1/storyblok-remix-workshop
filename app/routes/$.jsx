@@ -19,21 +19,26 @@ export default function Page({ locale }) {
 
   return (
     <Layout locale={locale}>
-      {console.log(locale)}
+      {console.log('Page JSX: ' + locale)}
       <StoryblokComponent blok={story.content} />
     </Layout>
   )
 };
 
-export const loader = async ({ locale, params, preview = false }) => {
+export const loader = async ({ lang, params, preview = false }) => {
   let slug = params["*"] ?? "home";
+  let activeLanguage = ['ja', 'default'].includes(lang) ? lang : 'default'
+  console.log('slug: ' + slug);
+  console.log('params["*"]: ' + params["*"]);
+  console.log(params);
 
   let sbParams = {
     version: "draft", // or 'draft'
     resolve_relations: ["featured-posts.posts", "selected-posts.posts"],
-    language: locale,
+    language: activeLanguage,
+    // find_by: "uuid",
   };
-  console.log('loader locale: ' + locale)
+  console.log('loader activeLanguage: ' + activeLanguage)
 
   if (preview) {
     sbParams.version = "draft"
@@ -41,5 +46,6 @@ export const loader = async ({ locale, params, preview = false }) => {
   };
 
   let { data } = await getStoryblokApi().get(`cdn/stories/${slug}`, sbParams);
+  console.log('data.story.lang: ' + data.story.lang)
   return json(data?.story, preview);
 };
