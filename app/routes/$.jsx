@@ -11,8 +11,7 @@ import {
 export default function Page() {
   let story = useLoaderData();
   story = useStoryblokState(story, {
-    resolveRelations: ["featured-posts.posts", "selected-posts.posts"],
-    language: locale,
+    resolveRelations: ["featured-posts.posts", "selected-posts.posts"]
   });
 
   return (
