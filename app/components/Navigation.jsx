@@ -1,14 +1,4 @@
-const Navigation = ({ locale }) => {
-  const resolveHome = {
-    en: 'Home',
-    ja: 'ホーム',
-  }
-  const resolveAbout = {
-    en: 'About',
-    ja: '概要',
-  }
-  const defaultLocale = locale === 'default' ? '/' : `/${locale}/`
-  console.log('Navigation locale: ' + locale)
+const Navigation = () => {
   return (
     <header className="w-full bg-white">
       <nav className="" role="navigation">
@@ -40,39 +30,13 @@ const Navigation = ({ locale }) => {
           <div className="w-full md:w-auto md:flex-grow md:flex md:items-center">
             <ul className="flex flex-col mt-4 -mx-4 pt-4 border-t md:flex-row md:items-center md:mx-0 md:mt-0 md:pt-0 md:mr-4 md:ml-auto lg:mr-8 md:border-0">
               <li>
-                <a href={`${defaultLocale}`} className="block px-4 py-1 md:p-2 lg:px-8">{resolveHome[locale]}</a>
+                <a href="/" className="block px-4 py-1 md:p-2 lg:px-8">Home</a>
               </li>
               <li>
-                <a href={`${defaultLocale}blog`} className="block px-4 py-1 md:p-2 lg:px-8">Blog</a>
+                <a href="/blog/home" className="block px-4 py-1 md:p-2 lg:px-8">Blog</a>
               </li>
               <li>
-                <a href={`${defaultLocale}about`} className="block px-4 py-1 md:p-2 lg:px-8">{resolveAbout[locale]}</a>
-              </li>
-            </ul>
-            {/* <ul className="flex flex-col mt-4 -mx-4 pt-4 border-t md:flex-row md:items-center md:mx-0 md:mt-0 md:pt-0 md:border-0">
-              {
-                locales.map(loc => {
-                  return (<li key={loc}>
-                    <a href={`/${loc}`} className={`block px-4 py-1 md:p-2 rounded-lg lg:px-4
-                ${locale === loc ? "bg-black text-white" : ""}`}>{loc}</a>
-                  </li>)
-                })
-              }
-            </ul> */}
-            <ul className="flex flex-col mt-4 -mx-4 pt-4 border-t md:flex-row md:items-center md:mx-0 md:mt-0 md:pt-0 md:border-0">
-              <li>
-                <a href="/"
-                  className={`block px-4 py-1 md:p-2 rounded-lg lg:px-4 ${locale === 'default' ? "bg-black text-white" : ""}`}
-                >
-                  EN
-                </a>
-              </li>
-              <li>
-                <a href="/ja"
-                  className={`block px-4 py-1 md:p-2 rounded-lg lg:px-4 ${locale === 'ja' ? "bg-black text-white" : ""}`}
-                >
-                  日本語
-                </a>
+                <a href="/about" className="block px-4 py-1 md:p-2 lg:px-8">About</a>
               </li>
             </ul>
           </div>
