@@ -10,12 +10,10 @@ import {
 
 export default function Page() {
   let story = useLoaderData();
-  locale = story.lang;
   story = useStoryblokState(story, {
     resolveRelations: ["featured-posts.posts", "selected-posts.posts"],
     language: locale,
   });
-  console.log('Page locale: ' + locale)
 
   return (
     <Layout>
