@@ -1,4 +1,4 @@
-# Remix Storyblok Blog Boiletplate
+# Remix Storyblok Blog Boilerplate
 
 ![Blog](https://res.cloudinary.com/dsmeebz8b/image/upload/v1651070686/Remix%20workshop/Screenshot_2022-04-27_at_16.44.03_cv5f0c.png)
 
@@ -17,7 +17,7 @@ Read the [Remix tutorial](https://www.storyblok.com/tp/headless-cms-remix) about
 ### 1. Clone the repo
 
 ```sh
-  $ git clone https://github.com/storyblok/storyblok-remix-boilerplate.git
+git clone https://github.com/storyblok/storyblok-remix-boilerplate.git
 ```
 
 ### 2. Install all dependecies
